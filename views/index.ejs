@@ -9,5 +9,10 @@
     <%- include("components/header.ejs") -%>
     <h1>Main page</h1>
     <h2>Server init</h2>
+
+    <form method="post" action="/check-user">
+        <input type="text" name="userName" placeholder="Имя пользователя">
+        <button type="submit">Поиск</button>
+    </form>
 </body>
 </html>
