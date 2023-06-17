@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node JS</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<%- include("components/header.ejs") -%>
+<h1>Список пользователей:</h1>
+<ul>
+    <% users.forEach(userID => { %>
+        <li>
+            <a href="user/<%= userID %>">Пользователь <%= userID %></a>
+        </li>
+    <% }); %>
+</ul>
+</body>
+</html>

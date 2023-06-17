@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node JS</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<%- include("components/header.ejs") -%>
+<h1>Пользователь: <%= username%> </h1>
+<% if (username === '1') { %>
+    <h2>Node user</h2>
+    <ul>
+        <% skills.forEach(skill => { %>
+            <li><%= skill %></li>
+        <% }); %>
+    </ul>
+<% } %>
+</body>
+</html>
