@@ -17,17 +17,28 @@ const HOST = "localhost";
 
 
 const express = require('express');
-const MongoClient    = require('mongodb').MongoClient;
 const bodyParser     = require('body-parser');
+
+const MongoClient = require('mongodb').MongoClient;
+const db= require('./config/db');
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 require('./api')(app);
-require('./routes')(app, {});
 
-app.listen(PORT, () => {
-    console.log('Server express started');
+MongoClient.connect(db.url, (err, database) => {
+    if (err) return console.log(err);
+    // require('./routes')(app, database);
+
+    // app.listen(PORT, HOST,() => {
+    //     console.log(`Server express started - http://${HOST}:${PORT}`);
+    // })
+})
+
+require('./routes')(app, {});
+app.listen(PORT, HOST,() => {
+    console.log(`Server express started - http://${HOST}:${PORT}`);
 })
