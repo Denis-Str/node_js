@@ -15,30 +15,46 @@ const HOST = "localhost";
 //     console.log(`Server: ${HOST}:${PORT}`)
 // })
 
-
 const express = require('express');
-const bodyParser     = require('body-parser');
+const bodyParser = require('body-parser');
 
-const MongoClient = require('mongodb').MongoClient;
-const db= require('./config/db');
+// const MongoClient = require('mongodb').MongoClient;
+const {MongoClient, ServerApiVersion} = require("mongodb");
+const db = require('./config/db');
 
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
-require('./api')(app);
+const client = new MongoClient(db.url, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  }
+);
 
-MongoClient.connect(db.url, (err, database) => {
-    if (err) return console.log(err);
-    // require('./routes')(app, database);
+async function run() {
+  try {
+    // Connect the client to the server (optional starting in v4.7)
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    // await client.db("admin").command({ ping: 1 });
+    // const Db = await client.db("users");
+    const db = await client.db();
+    require('./routes')(app, db);
+    console.log("You successfully connected to MongoDB!");
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
 
-    // app.listen(PORT, HOST,() => {
-    //     console.log(`Server express started - http://${HOST}:${PORT}`);
-    // })
-})
+run().catch(console.dir);
 
-require('./routes')(app, {});
-app.listen(PORT, HOST,() => {
-    console.log(`Server express started - http://${HOST}:${PORT}`);
+// require('./routes')(app, {});
+app.listen(PORT, HOST, () => {
+  console.log(`Server express started - http://${HOST}:${PORT}`);
 })
