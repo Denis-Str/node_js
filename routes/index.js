@@ -24,6 +24,11 @@ module.exports = (app, client) => {
 
   app.get('/user/:username', (req, res) => {
     // res.send(`User: ${req.params.username}`);
+
+    // поиск одного
+    // const test = await usersCollection.findOne(query);
+    // console.log(test)
+
     const params = { username: req.params.username, skills: ["vue", "nuxt", "node js"] }
     res.render('user', params);
   });
