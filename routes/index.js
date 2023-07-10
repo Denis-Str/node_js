@@ -1,6 +1,7 @@
 const usersRoutes = require('./users');
-module.exports = (app, db) => {
-  usersRoutes(app, db);
+
+module.exports = (app, client) => {
+  usersRoutes(app, client);
 
   app.get('/', (req, res) => {
     // выводит текст на страницу

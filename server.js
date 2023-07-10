@@ -18,7 +18,6 @@ const HOST = "localhost";
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// const MongoClient = require('mongodb').MongoClient;
 const {MongoClient, ServerApiVersion} = require("mongodb");
 const db = require('./config/db');
 
@@ -38,16 +37,8 @@ const client = new MongoClient(db.url, {
 
 async function run() {
   try {
-    // Connect the client to the server (optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
-    // const Db = await client.db("users");
-    const db = await client.db();
-    require('./routes')(app, db);
-    console.log("You successfully connected to MongoDB!");
+    require('./routes')(app, client);
   } finally {
-    // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
