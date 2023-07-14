@@ -45,7 +45,6 @@ async function run() {
 
 run().catch(console.dir);
 
-// require('./routes')(app, {});
 app.listen(PORT, HOST, (error) => {
   if (error) console.log(error);
   else console.log(`Server started - http://${HOST}:${PORT}`);
