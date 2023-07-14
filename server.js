@@ -1,4 +1,4 @@
-const PORT = 3000;
+const PORT = 5000;
 const HOST = "localhost";
 // const fs = require("fs");
 //
@@ -46,6 +46,7 @@ async function run() {
 run().catch(console.dir);
 
 // require('./routes')(app, {});
-app.listen(PORT, HOST, () => {
-  console.log(`Server express started - http://${HOST}:${PORT}`);
+app.listen(PORT, HOST, (error) => {
+  if (error) console.log(error);
+  else console.log(`Server started - http://${HOST}:${PORT}`);
 })

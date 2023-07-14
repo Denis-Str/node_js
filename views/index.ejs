@@ -8,11 +8,16 @@
 <body>
     <%- include("components/header.ejs") -%>
     <h1>Main page</h1>
-    <h2>Server init</h2>
 
     <form method="post" action="/check-user">
-        <input type="text" name="userName" placeholder="Имя пользователя">
+        <input type="text" name="checkName" placeholder="Имя пользователя">
         <button type="submit">Поиск</button>
+    </form>
+
+    <form method="post" action="/users">
+        <input type="text" name="userName" placeholder="Имя пользователя">
+        <input name="userSkills" placeholder="Умение">
+        <button type="submit">Добавить пользователя</button>
     </form>
 </body>
 </html>

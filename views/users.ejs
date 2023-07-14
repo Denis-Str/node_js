@@ -9,7 +9,7 @@
 <%- include("components/header.ejs") -%>
 <h1>Список пользователей:</h1>
 <ul>
-    <% users.forEach(({_id: userID}) => { %>
+    <% users.forEach(({_id: userID, name}) => { %>
         <li>
             <a href="user/<%= userID %>">Пользователь <%= userID %></a>
         </li>

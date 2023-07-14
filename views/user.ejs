@@ -8,8 +8,8 @@
 <body>
     <%- include("components/header.ejs") -%>
     <h1>Пользователь: <%= username%> </h1>
-    <% if (username === '1') { %>
-        <h2>Node user</h2>
+    <% if (skills.length > 0) { %>
+        <h3>skills</h3>
         <ul>
             <% skills.forEach(skill => { %>
                 <li><%= skill %></li>
