@@ -1,5 +1,5 @@
-const PORT = 5000;
-const HOST = "localhost";
+const PORT= 5000;
+const HOST= "localhost";
 // const fs = require("fs");
 //
 // const http = require("http");
@@ -18,7 +18,7 @@ const HOST = "localhost";
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const {MongoClient, ServerApiVersion} = require("mongodb");
+const { MongoClient, ServerApiVersion} = require("mongodb");
 const db = require('./config/db');
 
 const app = express();
@@ -32,8 +32,7 @@ const client = new MongoClient(db.url, {
       strict: true,
       deprecationErrors: true,
     }
-  }
-);
+});
 
 async function run() {
   try {

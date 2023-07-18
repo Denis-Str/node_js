@@ -1,17 +1,15 @@
 const usersRoutes = require('./users');
+const postsRoutes = require('./posts');
 
 module.exports = (app, client) => {
   usersRoutes(app, client);
+  postsRoutes(app, client);
 
   app.get('/', (req, res) => {
-    res.render("index");
+    res.render('index');
   });
 
-  app.get('/api/about', (req, res) => {
-    res.render("about")
-  });
-
-  // app.get('/user/:username/:id', (req, res) => {
+  // app.get('/api/user/:username/:id', (req, res) => {
   //   res.send(`User: ${req.params.username} - ID ${req.params.id}`);
   // });
 
@@ -26,21 +24,11 @@ module.exports = (app, client) => {
     res.render('user', params);
   });
 
-  app.post('/api/check-user', (req, res) => {
-    const { userName } = req.body;
-    if (userName === "" || userName === undefined) res.redirect('/about');
-    else res.redirect(`user/${userName}`);
-  });
-
   // роу для теста
   app.get('/api/test', (req, res) => {
+    res.render('Hello from Express!');
     res.json({ message: 'Hello from Express!' })
   });
-
-  // пример редиректа
-  app.get('/api/about-us', (req, res) => {
-    res.redirect('/about');
-  })
 
   app.use((req, res) => {
     res
