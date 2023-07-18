@@ -1,0 +1,80 @@
+<template>
+  <div class="default-layouts-component">
+    <nav>
+      <nuxt-link to="/">Home</nuxt-link>
+      <nuxt-link to="/posts">Posts</nuxt-link>
+      <nuxt-link to="/add-post">New Post</nuxt-link>
+    </nav>
+    <Nuxt />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'DefaultLayouts',
+};
+</script>
+
+<style>
+.default-layouts-component {
+
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  background: linear-gradient(to bottom, #00d2ff, #928dab);
+  color: #fff;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(0,0,0,0.7);
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  min-height: 60px;
+  display: block;
+  padding: 10px 20px;
+  line-height: 60px;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+</style>
