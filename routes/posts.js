@@ -11,7 +11,7 @@ module.exports = (app, client) => {
   }
 
   app.get('/api/posts', async (req, res) => {
-    const posts = [post];
+    const posts = [post, {...post, id: 2}];
     res.json(posts);
   });
 
