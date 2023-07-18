@@ -4,19 +4,13 @@ module.exports = (app, client) => {
   usersRoutes(app, client);
 
   app.get('/', (req, res) => {
-    // выводит текст на страницу
-    // res.send('Home');
-    // подключает файлы
-    // res.sendFile(`${__dirname}/templates/index.html`);
-    // подключение файлов с помощью шаблонизатора
     res.render("index");
   });
 
   app.get('/api/about', (req, res) => {
-    // res.send('About');
-    // res.sendFile(`${__dirname}/templates/about.html`);
     res.render("about")
   });
+
   // app.get('/user/:username/:id', (req, res) => {
   //   res.send(`User: ${req.params.username} - ID ${req.params.id}`);
   // });
@@ -38,9 +32,8 @@ module.exports = (app, client) => {
     else res.redirect(`user/${userName}`);
   });
 
+  // роу для теста
   app.get('/api/test', (req, res) => {
-    // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    // res.status(200).send('test');
     res.json({ message: 'Hello from Express!' })
   });
 
