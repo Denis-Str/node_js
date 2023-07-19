@@ -10,13 +10,30 @@ module.exports = (app, client) => {
     author: 'Yauhen'
   }
 
+  let posts = [post, {...post, id: 2}]
+
   app.get('/api/posts', async (req, res) => {
-    const posts = [post, {...post, id: 2}];
     res.json(posts);
   });
 
   app.get('/api/post/:id', (req, res) => {
     console.log('req', req.params.id)
     res.json(post);
-  })
+  });
+
+  app.post('/api/post-add', (req, res) => {
+    console.log('req', req.body)
+
+    const { title, author, text } = req.body;
+    const newPost = {
+      title,
+      author,
+      text,
+      date: new Date().toLocaleDateString(),
+      // id: postsCollection.estimatedDocumentCount() + 1
+      id: new Date()
+    }
+    posts = [...posts, newPost];
+    res.send(req.body)
+  });
 }

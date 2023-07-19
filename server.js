@@ -16,7 +16,6 @@ const HOST= "localhost";
 // })
 
 const express = require('express');
-const bodyParser = require('body-parser');
 
 const { MongoClient, ServerApiVersion} = require("mongodb");
 const db = require('./config/db');
@@ -24,7 +23,8 @@ const db = require('./config/db');
 const app = express();
 app.set("view engine", "ejs");
 app.use(express.static('public'));
-app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const client = new MongoClient(db.url, {
     serverApi: {
