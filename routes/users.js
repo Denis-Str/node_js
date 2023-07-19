@@ -1,5 +1,4 @@
-module.exports = (app, client) => {
-  const database = client.db('users');
+module.exports = (app, database) => {
   const usersCollection = database.collection('users');
 
   app.get('/api/users', async (req, res) => {

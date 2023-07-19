@@ -1,7 +1,6 @@
-module.exports = (app, client) => {
-  const database = client.db('posts');
-  const postsCollection = database.collection('posts');
+const Post = require('../models/post');
 
+module.exports = (app) => {
   const post = {
     id: 1,
     title: 'Post title',
@@ -21,19 +20,14 @@ module.exports = (app, client) => {
     res.json(post);
   });
 
-  app.post('/api/post-add', (req, res) => {
-    console.log('req', req.body)
-
+  app.post('/api/post-add', async (req, res) => {
     const { title, author, text } = req.body;
-    const newPost = {
-      title,
-      author,
-      text,
-      date: new Date().toLocaleDateString(),
-      // id: postsCollection.estimatedDocumentCount() + 1
-      id: new Date()
+    const post = new Post({title, author, text });
+    try {
+      const newPost = await post.save();
+      res.send(newPost);
+    } catch (e) {
+      console.log(e);
     }
-    posts = [...posts, newPost];
-    res.send(req.body)
   });
 }

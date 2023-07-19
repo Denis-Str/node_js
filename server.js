@@ -1,44 +1,26 @@
 const PORT= 5000;
 const HOST= "localhost";
-// const fs = require("fs");
-//
-// const http = require("http");
-// const server = http.createServer((req, res) => {
-//     res.writeHead(200, {"Content-Type": "text-plain; charset=utf-8"});
-//     if (req.url === '/')
-//         fs.createReadStream("./templates/index.html").pipe(res);
-//     else if (req.url === '/about')
-//         fs.createReadStream("./templates/about.html").pipe(res);
-// });
-//
-// server.listen(PORT, HOST, () => {
-//     console.log(`Server: ${HOST}:${PORT}`)
-// })
 
 const express = require('express');
-
-const { MongoClient, ServerApiVersion} = require("mongodb");
-const db = require('./config/db');
-
 const app = express();
+
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const client = new MongoClient(db.url, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-});
+const mongoose = require('mongoose');
 
 async function run() {
   try {
-    require('./routes')(app, client);
-  } finally {
-    await client.close();
+    require('./routes')(app);
+    await mongoose.connect('mongodb://localhost:27017/node-js', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    })
+    console.log('Connect to Db');
+  } catch (e) {
+    console.log(e);
   }
 }
 
