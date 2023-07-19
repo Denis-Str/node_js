@@ -4,6 +4,7 @@
       <nuxt-link to="/">Home</nuxt-link>
       <nuxt-link to="/posts">Posts</nuxt-link>
       <nuxt-link to="/add-post">New Post</nuxt-link>
+      <nuxt-link to="/contacts">Contacts</nuxt-link>
     </nav>
     <Nuxt />
   </div>

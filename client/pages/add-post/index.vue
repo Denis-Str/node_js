@@ -42,6 +42,7 @@ export default {
           author: this.author,
           text: this.text
         })
+        await this.$router.push('/posts');
       } catch (error) {
         console.log(error);
       }

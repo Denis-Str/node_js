@@ -1,7 +1,7 @@
 <template>
   <article class="post-page-component">
     <div class="info">
-      <span>{{ post.date }}</span>
+      <span>{{ currentDate }} -</span>
       <span>{{ post.author }}</span>
     </div>
     <h1>{{ post.title }}</h1>
@@ -15,6 +15,18 @@ export default {
   data() {
     return {
       post: {}
+    }
+  },
+  computed: {
+    currentDate() {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const date = new Date(this.post.createdAt);
+      return date.toLocaleDateString('ru-RU', options)
     }
   },
   async created() {

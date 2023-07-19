@@ -2,11 +2,11 @@
   <li class="post-component">
     <article>
       <h2>
-        <nuxt-link :to="`/post/${post.id}`">{{ post.title }}</nuxt-link>
+        <nuxt-link :to="`/post/${post._id}`">{{ post.title }}</nuxt-link>
       </h2>
       <p>{{ post.text }}</p>
       <div class="info">
-        <span>{{ post.date }}</span>
+        <span>{{ currentDate }}</span>
         <span>{{ post.author }}</span>
       </div>
     </article>
@@ -20,6 +20,18 @@ export default {
     post: {
       type: Object,
       default: () => ({})
+    }
+  },
+  computed: {
+    currentDate() {
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      const date = new Date(this.post.createdAt);
+      return date.toLocaleDateString('ru-RU', options)
     }
   }
 }
