@@ -6,7 +6,9 @@
       <nuxt-link to="/add-post">New Post</nuxt-link>
       <nuxt-link to="/contacts">Contacts</nuxt-link>
     </nav>
-    <Nuxt />
+    <div class="wrap">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
@@ -18,18 +20,20 @@ export default {
 
 <style>
 .default-layouts-component {
-
+  .wrap {
+    margin: 0 auto;
+    max-width: 1400px;
+  }
 }
 body {
   display: flex;
   min-height: 100vh;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   background: linear-gradient(to bottom, #00d2ff, #928dab);
   color: #fff;
+  margin: unset;
 }
 
 h1 {
@@ -37,11 +41,8 @@ h1 {
 }
 
 nav {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   min-height: 60px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   background-color: rgba(0,0,0,0.7);

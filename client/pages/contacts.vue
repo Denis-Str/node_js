@@ -1,9 +1,12 @@
 <template>
-  <ul class="contacts-component">
-    <li v-for="{ name, link } in contacts" :key="name">
-      <a :href="link">{{ name }}</a>
-    </li>
-  </ul>
+  <div class="contacts-component">
+    <h3>Contacts:</h3>
+    <ul class="list">
+      <li v-for="{ name, link } in contacts" :key="name">
+        <a :href="link">{{ name }}</a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -26,7 +29,9 @@ export default {
 
 <style scoped>
 .contacts-component {
-  display: flex;
+  ul {
+    display: flex;
+  }
 
   li:not(:last-child) {
     margin-right: 20px;

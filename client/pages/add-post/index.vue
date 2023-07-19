@@ -1,5 +1,6 @@
 <template>
   <div class="add-post-page-component">
+    <h3>Add post form:</h3>
     <form id="contact-form">
       <div class="form-info">
         <label>Post Title
