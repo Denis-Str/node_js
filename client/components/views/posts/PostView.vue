@@ -10,6 +10,8 @@
         <span>{{ post.author }}</span>
       </div>
     </article>
+    <div class="btn-edit" @click="editPost">Edit</div>
+    <div class="btn" @click="deletePost">Del</div>
   </li>
 </template>
 
@@ -33,6 +35,14 @@ export default {
       const date = new Date(this.post.createdAt);
       return date.toLocaleDateString('ru-RU', options)
     }
+  },
+  methods: {
+    deletePost() {
+      this.$emit("deletePost", this.post._id);
+    },
+    editPost() {
+      this.$router.push(`/add-post/${this.post._id}`);
+    }
   }
 }
 </script>
@@ -40,6 +50,8 @@ export default {
 
 <style scoped>
 .post-component {
+  position: relative;
+
   article {
     background-color: rgba(0,0,0,0.4);
     padding: 10px 20px;
@@ -54,6 +66,17 @@ export default {
 
   h2 a {
     color: aqua;
+  }
+
+  .btn,
+  .btn-edit {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+  }
+
+  .btn-edit {
+    right: 85px;
   }
 }
 </style>

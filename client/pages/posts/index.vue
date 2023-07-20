@@ -3,7 +3,12 @@
     <h3>Posts:</h3>
     <template v-if="posts.length > 0">
       <ul class="post-list">
-        <post v-for="post in posts" :key="post.id" :post="post" />
+        <post
+          v-for="post in posts"
+          :key="post.id"
+          :post="post"
+          @deletePost="deletePost"
+        />
       </ul>
     </template>
     <template v-else>is Empty...</template>
@@ -21,6 +26,16 @@ export default {
     return {
       posts: []
     }
+  },
+  methods: {
+    async deletePost(id) {
+      try {
+        await this.$axios.$delete(`/api/post-remove/${id}`);
+        this.posts = await this.$axios.$get('/api/posts');
+      } catch (e) {
+        console.log(e)
+      }
+    },
   },
   async created() {
     try {

@@ -1,11 +1,14 @@
 <template>
   <article class="post-page-component">
-    <div class="info">
-      <span>{{ currentDate }} -</span>
-      <span>{{ post.author }}</span>
+    <h3>Posts:</h3>
+    <div class="wrap">
+      <div class="info">
+        <span>{{ currentDate }} -</span>
+        <span>{{ post.author }}</span>
+      </div>
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.text }}</p>
     </div>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.text }}</p>
   </article>
 </template>
 
@@ -27,7 +30,7 @@ export default {
       };
       const date = new Date(this.post.createdAt);
       return date.toLocaleDateString('ru-RU', options)
-    }
+    },
   },
   async created() {
     try {
@@ -42,10 +45,12 @@ export default {
 
 <style scoped>
 .post-page-component {
-  background-color: rgba(0,0,0,0.4);
-  padding: 10px 20px;
-  border-radius: 3px;
-  margin-bottom: 10px;
+  .wrap {
+    background-color: rgba(0,0,0,0.4);
+    padding: 10px 20px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
 
   .info {
     display: flex;
