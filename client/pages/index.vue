@@ -10,7 +10,7 @@ export default {
   name: 'IndexPage',
   async mounted() {
     try {
-      const { message } = await this.$axios.$get('/api/test');
+      const { message } = await this.$axios.$get('/api/home');
       console.log(message)
     } catch (e) {
       console.log(e);

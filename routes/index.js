@@ -1,28 +1,26 @@
+const express = require('express');
+const routes = express.Router();
+
 const postsRoutes = require('./posts');
+const contactsRoutes = require('./contacts');
 
-const Contacts = require('../models/contacts');
+routes.get('/', (req, res) => {
+  res.render('index');
+});
 
-module.exports = (app) => {
-  postsRoutes(app);
+// роут для теста
+routes.get('/api/home', (req, res) => {
+  res.send('Hello from Express!');
+  res.json({ message: 'Hello from Express!' })
+});
 
-  app.get('/', (req, res) => {
-    res.render('index');
-  });
+routes.use(postsRoutes);
+routes.use(contactsRoutes);
 
-  // роут для теста
-  app.get('/api/test', (req, res) => {
-    res.send('Hello from Express!');
-    res.json({ message: 'Hello from Express!' })
-  });
+routes.use((req, res) => {
+  res
+    .status(404)
+    .send(`Page not found: ${req.url}`);
+})
 
-  app.get('/api/contacts', async (req, res) => {
-    const contacts = await Contacts.find();
-    res.json(contacts);
-  })
-
-  app.use((req, res) => {
-    res
-      .status(404)
-      .send(`Page not found: ${req.url}`);
-  })
-};
+module.exports = routes;
